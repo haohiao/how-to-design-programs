@@ -5,11 +5,19 @@
 (require 2htdp/universe)
 
 (define (picture-of-rocket height)
-  (place-image
-   (bitmap "./resources/images/rocket.png")
-   50
-   height
-   (empty-scene 100 60)))
+  (cond
+    [(<= height 60)
+     (place-image
+      (bitmap "./resources/images/rocket.png")
+      50
+      height
+      (empty-scene 100 60))]
+    [(> height 60)
+     (place-image
+      (bitmap "./resources/images/rocket.png")
+      50
+      60
+      (empty-scene 100 60))]))
 
 
 (animate picture-of-rocket)

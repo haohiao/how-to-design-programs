@@ -4,30 +4,36 @@
 (require 2htdp/image) 
 (require 2htdp/universe)
 
-; constants
+; properties of the "world" and the descending rocket
 (define WIDTH 100)
 (define HEIGHT 60)
 (define X
   (/ WIDTH 2))
+(define V 3)
+
+; graphical constants
 (define MTSCN (empty-scene WIDTH HEIGHT))
 (define ROCKET (bitmap "./resources/images/rocket.png"))
 (define ROCKET-CENTER-TO-TOP
   (- HEIGHT (/ (image-height ROCKET) 2)))
 
 ; functions
-(define (picture-of-rocket height)
+(define (picture-of-rocket t)
   (cond
-    [(<= height ROCKET-CENTER-TO-TOP)
+    [(<= (distance t) ROCKET-CENTER-TO-TOP)
      (place-image
       ROCKET
       X
-      height
+      (distance t)
       MTSCN)]
-    [(> height ROCKET-CENTER-TO-TOP)
+    [(> (distance t) ROCKET-CENTER-TO-TOP)
      (place-image
       ROCKET
       X
       ROCKET-CENTER-TO-TOP
       MTSCN)]))
+
+(define (distance t)
+  (* t V))
 
 (animate picture-of-rocket)

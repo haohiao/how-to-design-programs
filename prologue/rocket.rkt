@@ -7,19 +7,22 @@
 (define (picture-of-rocket height)
   (cond
     [(<= height
-         (- 60 (/ (image-height (bitmap "./resources/images/rocket.png")) 2)))
+         (- HEIGHT (/ (image-height ROCKET) 2)))
      (place-image
-      (bitmap "./resources/images/rocket.png")
+      ROCKET
       50
       height
-      (empty-scene 100 60))]
+      (empty-scene WIDTH HEIGHT))]
     [(> height
-        (- 60 (/ (image-height (bitmap "./resources/images/rocket.png")) 2)))
+        (- HEIGHT (/ (image-height ROCKET) 2)))
      (place-image
-      (bitmap "./resources/images/rocket.png")
+      ROCKET
       50
-      (- 60 (/ (image-height (bitmap "./resources/images/rocket.png")) 2))
-      (empty-scene 100 60))]))
+      (- HEIGHT (/ (image-height ROCKET) 2))
+      (empty-scene WIDTH HEIGHT))]))
 
+(define WIDTH 100)
+(define HEIGHT 60)
+(define ROCKET (bitmap "./resources/images/rocket.png"))
 
 (animate picture-of-rocket)

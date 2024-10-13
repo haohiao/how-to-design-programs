@@ -6,17 +6,19 @@
 
 (define (picture-of-rocket height)
   (cond
-    [(<= height 60)
+    [(<= height
+         (- 60 (/ (image-height (bitmap "./resources/images/rocket.png")) 2)))
      (place-image
       (bitmap "./resources/images/rocket.png")
       50
       height
       (empty-scene 100 60))]
-    [(> height 60)
+    [(> height
+        (- 60 (/ (image-height (bitmap "./resources/images/rocket.png")) 2)))
      (place-image
       (bitmap "./resources/images/rocket.png")
       50
-      60
+      (- 60 (/ (image-height (bitmap "./resources/images/rocket.png")) 2))
       (empty-scene 100 60))]))
 
 

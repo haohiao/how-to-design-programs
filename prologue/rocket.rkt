@@ -4,25 +4,30 @@
 (require 2htdp/image) 
 (require 2htdp/universe)
 
-(define (picture-of-rocket height)
-  (cond
-    [(<= height
-         (- HEIGHT (/ (image-height ROCKET) 2)))
-     (place-image
-      ROCKET
-      50
-      height
-      (empty-scene WIDTH HEIGHT))]
-    [(> height
-        (- HEIGHT (/ (image-height ROCKET) 2)))
-     (place-image
-      ROCKET
-      50
-      (- HEIGHT (/ (image-height ROCKET) 2))
-      (empty-scene WIDTH HEIGHT))]))
-
+; constants
 (define WIDTH 100)
 (define HEIGHT 60)
+(define X
+  (/ WIDTH 2))
+(define MTSCN (empty-scene WIDTH HEIGHT))
 (define ROCKET (bitmap "./resources/images/rocket.png"))
+(define ROCKET-CENTER-TO-TOP
+  (- HEIGHT (/ (image-height ROCKET) 2)))
+
+; functions
+(define (picture-of-rocket height)
+  (cond
+    [(<= height ROCKET-CENTER-TO-TOP)
+     (place-image
+      ROCKET
+      X
+      height
+      MTSCN)]
+    [(> height ROCKET-CENTER-TO-TOP)
+     (place-image
+      ROCKET
+      X
+      ROCKET-CENTER-TO-TOP
+      MTSCN)]))
 
 (animate picture-of-rocket)

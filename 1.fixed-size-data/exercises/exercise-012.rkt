@@ -1,0 +1,14 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname exercise-012) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+; 根据正方体的边长计算体积
+(define (cvolume length)
+  (expt length 3))
+
+; 根据正方体的边长计算表面积
+(define (csurface length)
+  (* 6 (* length length)))
+
+
+(cvolume 3)
+(csurface 3)
